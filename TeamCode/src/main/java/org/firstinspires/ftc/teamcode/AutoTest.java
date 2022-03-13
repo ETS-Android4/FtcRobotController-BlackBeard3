@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous
-public class OutnomicOpMode extends LinearOpMode {
+public class AutoTest extends LinearOpMode {
 
     // runtime variable
     private ElapsedTime runtime = new ElapsedTime();
@@ -36,22 +36,11 @@ public class OutnomicOpMode extends LinearOpMode {
 
         waitForStart();// Wait for the game to start
         debug("Status", "Started!");
-//        controller.forward(DRIVE_POWER, controller.cmToTicks(100));
-//        elevator.goToLevel(Level.LEVEL3);
-//        elevator.flipBox();
-//
-//        MotorController.sleep(500);
-//
-//        elevator.retrieveElevator();
-//        controller.backward(DRIVE_POWER, controller.cmToTicks(100));
-
-        //carousel mission
-        controller.left(DRIVE_POWER, controller.cmToTicks(180)); //drive left to get to the target
-        controller.runMotorForTime(carousel, CAROUSEL_POWER, 5000); //spin the carousel to drop the duck
-        controller.forward(DRIVE_POWER, controller.cmToTicks(40)); //drive forward
-        controller.rotationRight(DRIVE_POWER, controller.cmToTicks(60)); //TURN right
-        controller.forward(DRIVE_POWER, controller.cmToTicks(360)); //drive forward
-        /*
+        //controller.forward(DRIVE_POWER, controller.cmToTicks(60));
+        controller.right(1, 1000);
+        controller.MotorsStop();
+        for(;;){}
+        /*`
         controller.left(DRIVE_POWER, 5000); //drive right to get to the target
         controller.runMotorForTime(carousel, CAROUSEL_POWER, 3500); //spin the carousel to drop the duck
         controller.forward(DRIVE_POWER, 500); //drive forward

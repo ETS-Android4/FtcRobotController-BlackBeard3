@@ -122,13 +122,7 @@ public class BlackBeardOpModeOne extends LinearOpMode {
 //            //telemetry.addData("box direction", box_direction);
 //            telemetry.update();
 
-            telemetry.addData("Power front right", String.valueOf(motorFrontRight.getPower()));
-            telemetry.addData("Power front left", String.valueOf(motorFrontLeft.getPower()));
-            telemetry.addData("Encoder front right", String.valueOf(Math.abs(motorFrontRight.getCurrentPosition())));
-            telemetry.addData("Encoder front left", String.valueOf(Math.abs(motorFrontLeft.getCurrentPosition())));
-            telemetry.addData("Encoder back right", String.valueOf(Math.abs(motorBackRight.getCurrentPosition())));
-            telemetry.addData("Encoder back left", String.valueOf(Math.abs(motorBackLeft.getCurrentPosition())));
-            telemetry.update();
+
         }
     }
 
