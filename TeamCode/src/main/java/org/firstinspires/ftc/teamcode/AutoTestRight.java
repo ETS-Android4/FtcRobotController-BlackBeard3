@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous
-public class AutoTest extends LinearOpMode {
+public class AutoTestRight extends LinearOpMode {
 
     // runtime variable
     private ElapsedTime runtime = new ElapsedTime();
@@ -36,8 +36,8 @@ public class AutoTest extends LinearOpMode {
 
         waitForStart();// Wait for the game to start
         debug("Status", "Started!");
-        controller.forward(DRIVE_POWER, controller.cmToTicks(60));
-        controller.left(1, 1000);
+        //controller.forward(DRIVE_POWER, controller.cmToTicks(60));
+        controller.right(0.5, 1000);
         controller.MotorsStop();
         for(;;){}
         /*`

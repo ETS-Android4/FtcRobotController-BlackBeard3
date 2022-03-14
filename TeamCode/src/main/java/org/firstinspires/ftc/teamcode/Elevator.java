@@ -114,7 +114,6 @@ public class Elevator {
         //move elevator to a certain angle:
 //        if(gamepad2.dpad_left){
 //            move_to_100_degree = true;
-////            move_elevator_to_position(100);
 //        }
 //        move_elevator_to_position(100);
 //        if(move_to_100_degree){
