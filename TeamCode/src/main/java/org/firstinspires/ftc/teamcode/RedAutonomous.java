@@ -34,7 +34,7 @@ public class RedAutonomous extends LinearOpMode {
         motorFrontRight = hardwareMap.dcMotor.get("fr");
         motorBackRight = hardwareMap.dcMotor.get("br");
         carousel = hardwareMap.get(DcMotor.class, "carusle");
-        //carousel2 = hardwareMap.get(CRServo.class, "carousel2");
+        carousel2 = hardwareMap.get(CRServo.class, "carousel2");
         MotorController controller = new MotorController(motorFrontLeft,motorBackLeft,motorFrontRight,motorBackRight,telemetry);
         ElevatorController elevator = new ElevatorController(hardwareMap);
         debug("Status", "Initialized"); //update the status in the Telemetry.
@@ -59,9 +59,9 @@ public class RedAutonomous extends LinearOpMode {
         //carousel mission
         controller.rotationRight(DRIVE_POWER, controller.cmToTicks(25));
         controller.right(DRIVE_POWER, controller.cmToTicksSide(180)); //drive left to get to the target
-        //carousel2.setPower(1);
+        carousel2.setPower(1);
         controller.runMotorForTime(carousel, CAROUSEL_POWER, 5000); //spin the carousel to drop the duck
-        //carousel2.setPower(0);
+        carousel2.setPower(0);
         controller.forward(DRIVE_POWER, controller.cmToTicks(40)); //drive forward
         controller.rotationLeft(DRIVE_POWER, controller.cmToTicks(60)); //TURN right
         controller.forward(DRIVE_POWER, controller.cmToTicks(360)); //drive forward
