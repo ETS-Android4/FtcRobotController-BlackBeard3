@@ -29,6 +29,13 @@ public class MotorController {
     }
 
     private void resetPosition() {
+        //reset encoders.
+        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //run this motor using an encoder.
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -43,18 +50,23 @@ public class MotorController {
         sleep(100);
     }
 
+    /*
     private void runTargetPosition(){
         motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+     */
+
+
 
     private void waitForTarget(int ticks) {
-        while (Math.abs(motorBackRight.getCurrentPosition()) <= ElevatorPosition+ticks &&
-                Math.abs(motorBackLeft.getCurrentPosition()) <= ElevatorPosition+ticks &&
-                Math.abs(motorFrontLeft.getCurrentPosition()) <= ElevatorPosition+ticks &&
-                Math.abs(motorFrontRight.getCurrentPosition()) <= ElevatorPosition+ticks) {
+        int average = (Math.abs(motorBackRight.getCurrentPosition()) +
+                Math.abs(motorBackLeft.getCurrentPosition()) +
+                Math.abs(motorFrontLeft.getCurrentPosition()) +
+                Math.abs(motorFrontRight.getCurrentPosition()))/4;
+        while (average <= ElevatorPosition+ticks) {
             telemetry.addData("Ticks", String.valueOf(ticks));
             telemetry.addData("Power front right", String.valueOf(motorFrontRight.getPower()));
             telemetry.addData("Power front left", String.valueOf(motorFrontLeft.getPower()));
@@ -99,6 +111,8 @@ public class MotorController {
         MotorsStop();
     }
 
+
+
     public void right(double power, int encoderTicks){
 //        motorBackRight.setTargetPosition(encoderTicks);
 //        motorBackLeft.setTargetPosition(-encoderTicks);
@@ -136,6 +150,21 @@ public class MotorController {
         motorFrontLeft.setPower(power);
         motorFrontRight.setPower(power);
         waitForTarget(ticks);
+        MotorsStop();
+    }
+
+    public void diagonalRight(double power, int encoderTicks){
+        //motorBackRight.setTargetPosition(encoderTicks);
+        //motorBackLeft.setTargetPosition(-encoderTicks);
+        //motorFrontLeft.setTargetPosition(-encoderTicks);
+        //motorFrontRight.setTargetPosition(encoderTicks);
+
+        motorBackRight.setPower(power);
+        motorBackLeft.setPower(0);
+        motorFrontLeft.setPower(-power);
+        motorFrontRight.setPower(0);
+        //runTargetPosition();
+        waitForTarget(encoderTicks);
         MotorsStop();
     }
 

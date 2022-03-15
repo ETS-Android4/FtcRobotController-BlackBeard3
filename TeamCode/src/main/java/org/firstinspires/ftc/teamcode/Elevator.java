@@ -137,7 +137,7 @@ public class Elevator {
             elevatorMotor.setPower(0.7);
         }
         else {
-            elevatorMotor.setPower((-gamepad2.left_stick_y + feedforward) / 3.5);
+            elevatorMotor.setPower((-gamepad2.left_stick_y) / 3.5);
         }
         //abs(1-(2/pi)abs(x))
 //        double angle = getWristAngle(elevatorMotor);
@@ -214,7 +214,7 @@ public class Elevator {
         telemetry.addData("outsensor is pressed", outSensor.isPressed());
         telemetry.addData("outsensor pressed", inSensor.isPressed());
         telemetry.addData("elevator power", elevatorPower);
-        telemetry.addData("feedforward val", feedforward);
+        //telemetry.addData("feedforward val", feedforward);
         telemetry.addData("servo", box.getPosition());
         telemetry.addData("poto voltage",poto.getVoltage());
         telemetry.addData("poto degree", poto.getVoltage()*81.8);
